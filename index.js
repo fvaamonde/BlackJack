@@ -1,8 +1,13 @@
 import express from "express";
 import axios from "axios";
 
+
+
 const app = express();
 const port = 3000;
+app.use(express.static("public"));
+
+
 let deck;
 let getCards_API;
 let dealerHand = [];
@@ -44,9 +49,10 @@ function askCard() {
   let card = deck.cards.shift()
   return card
 }
-
+// Checks for the value of the hand and replaces the ACE's for ones depending on the hand.
+// And replaces de values of face cards to ten and 11.
 function checkForHand(hand) {
-  console.log(hand);
+  // console.log(hand);
   let rawValueHand = hand.map( item => item.value);
   let pointHandValue = rawValueHand.map(item => {
     if(item === "KING" || item === "QUEEN" || item === "JACK") {
@@ -59,24 +65,32 @@ function checkForHand(hand) {
     }
     });
   let handValue = pointHandValue.reduce((partialSum, item)=> partialSum + parseInt(item) , 0);
-  if (handValue > 21 && pointHandValue.includes(11)){
-    handValue -= 10;
-  }
+  while(pointHandValue.includes(11)){
+    if (handValue > 21 ){
+        let pos = pointHandValue.indexOf(11);
+        pointHandValue[pos] = 1;
+        handValue = pointHandValue.reduce((partialSum, item)=> partialSum + parseInt(item) , 0);
+    }
+    else { break 
+    };
+  };
+  // console.log(handValue);
   return handValue;
-  }
+  };
+// Compares the two hands to decide the winner from the point of wiew of the player.
 
 function checkWinner(dealer, player) {
   if (dealer > 21) {
-    return "WIN";
+    return "YOU WIN !";
   }
   else if (dealer > player) {
-    return "LOST";
+    return "YOU LOST ! ";
   }
   else if (dealer === player) {
-    return "PUSH";
+    return "PUSH is a tie";
   } 
   else {
-    return "WIN";
+    return " YOU WIN !";
   }
 };
 
@@ -98,7 +112,7 @@ app.get("/start", (req, res) => {
   // console.log(playerPoints)
   if(playerPoints === 21){
     playerStatus = "Your Lucky !!";
-    whoWon = "Black Jack !! You Won !"
+    whoWon = "BlackJack !! YOU WIN !"
   }
   else{
     playerStatus = "Thinking";
@@ -116,10 +130,12 @@ app.get("/start", (req, res) => {
 app.get("/hit", (req, res) => {
   playerHand.push(askCard());
   // console.log(playerHand)
+  dealerPoints = checkForHand(dealerHand);
   playerPoints = checkForHand(playerHand);
   if (playerPoints > 21){
     playerStatus = "BUST";
-    whoWon = "LOST";
+    whoWon = "BUST YOU LOST !";
+    playerPlaying = false;
 
   } else {
     playerStatus = "In the game"
@@ -129,6 +145,7 @@ app.get("/hit", (req, res) => {
     playerHand : playerHand,
     pStatus : playerStatus,
     playerPoints: playerPoints,
+    dealerPoints : dealerPoints,
     whoWon : whoWon,
     playerPlaying : playerPlaying,
 
@@ -137,10 +154,10 @@ app.get("/hit", (req, res) => {
 });
 
 app.get("/stand", ( req, res) => {
-  console.log(dealerHand); 
+  // console.log(dealerHand); 
   dealerPoints = checkForHand(dealerHand);
   if (dealerPoints === 21) {
-    whoWon = "LOST Dealer got Black Jack"
+    whoWon = "YOU LOST ! Dealer has BlackJack"
   }
   else {
     while (dealerPoints < 17) {
