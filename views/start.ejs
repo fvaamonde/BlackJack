@@ -1,0 +1,61 @@
+<%-include ("partials/header.ejs") %>
+<body>
+   <div class="cards-container">
+        <div class="cards dealer">
+        <% if(playerPlaying ){ %>
+                <p>Dealer's Hand </p>
+        </div>
+        <div class="cards">
+                <img src="https://deckofcardsapi.com/static/img/back.png" alt="back of card" height="200">
+                <img src="<%= dealerHand[1].image %>" alt="card image" height="200">
+            <% } else { %>
+        </div>
+        <div class="cards dealer">
+            <div><p>Dealer's Hand</p></div>
+            <div class="points">
+                <p><%=dealerPoints %></p>
+            </div>
+        </div>
+        <div class="cards">
+            <% for ( const item of dealerHand) { %>
+                <img src="<%= item.image %>" alt="card image" height="200">
+                <% } %>
+            <% } %>
+        </div>
+        <div class="cards player">
+            <div><p>Player's Hand</p></div>
+            
+            <div class="points">
+                <p><%= playerPoints %></p>
+            </div>
+        </div>
+
+        <div class="cards">
+            <% for ( const item of playerHand) { %>
+            <img src="<%= item.image %>" alt="card image" height="200">
+            <% } %>
+        </div>
+    </div>
+    <div class="cards">
+        <form method="get">
+        <% if(playerPlaying) { %>
+            <button class="styled" type="submit" formaction="/hit"> Hit</button>
+            <button class="styled" type="submit" formaction="/stand">Stand</button>
+            <button class="styled disabled" disabled type="submit" formaction="/deal">Deal Again</button>
+        <% } else { %>
+                <button class="styled disabled"  type="submit" formaction="/hit" disabled> Hit</button>
+                <button class="styled disabled" type="submit" formaction="/stand" disabled>Stand</button>
+                <button class="styled" show type="submit" formaction="/deal">Deal Again</button>  
+        <% } %>
+        </form>
+
+    </div>
+    <div class="results">
+        <h3 width="35%">  <%= whoWon  %></h3>
+        <p>Your Bank: $<%= bank %></p>
+    </div> 
+    <%-include ("partials/footer.ejs") %>  
+    
+    
+    
+

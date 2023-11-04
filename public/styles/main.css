@@ -1,0 +1,113 @@
+body { background-color: rgb(22, 73, 92);}
+
+.welcome {
+    text-align: center;
+    font-size: 4rem;
+    color:#d75226;
+}
+
+.rules { 
+    text-align: center;
+    font-size: 3rem;
+    color:lightsalmon;
+}
+
+.rules-list {
+   
+    text-align: center;
+    font-size: 1.2rem;
+    color:lightsalmon;
+    list-style-position: inside;
+}
+.rules-list li {padding: 8px 0;}
+
+.start-button {
+    display:flex;
+    justify-content: center;
+}
+
+.styled {
+    margin:20px 0;
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: #d75226;
+    background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0));
+    box-shadow:
+      inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+      inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+  }
+  
+  .styled:hover {
+    background-color: #c38d7b;
+  }
+  
+  .styled:active {
+    box-shadow:
+      inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+      inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+  }
+
+.cards-container{
+    border: #c38d7b solid;
+}
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards img {
+    margin-right:15px ;
+}
+
+.cards p {
+    margin: 30px 0;
+    color:#d75226;
+    font-size: 1.5rem;
+}
+
+
+
+.cards button {
+    margin: 40px 20px;
+
+}
+
+.disabled {
+    opacity: 0.5; /* Example: reduce opacity for disabled look */
+    pointer-events: none; /* Make the button unclickable */
+    cursor: not-allowed;
+}
+.points p {
+    text-align: center;
+    font-size: 2rem;
+}
+.players {
+    display: flex;
+}
+.points {
+    width: 150px;
+    font-size: 2rem;
+}
+.results {
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    color: #d75226;
+    font-size: 3rem;
+}
+
+footer {
+    text-align: center;
+    color: rgb(163, 157, 155);
+    font-size: medium;
+
+}

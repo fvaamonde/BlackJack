@@ -1,0 +1,29 @@
+<%-include ("partials/header.ejs") %>
+<body>
+    <h1 class="welcome">Welcome to BlackJack !</h1>
+    
+    <h3 class="rules">Here are some tips to get you started</h3>
+    <ul class="rules-list">
+        <li class="list">The main objective of blackjack is to beat the dealer's hand without going over 21.</li>
+        <li>Numbered cards (2-10) are worth their face value.</li>
+        <li>Face cards (King, Queen, Jack) are each worth 10 points. </li>
+        <li>Aces can be worth either 1 point or 11 points, depending on which value benefits the hand more. </li>
+        <li>Each player, including the dealer, is dealt two cards. Players' cards are usually dealt face up, while the dealer has one card face up and one face down. </li>
+        <li>Hit: Take another card. Stand: Keep the current hand and end your turn. </li>
+        <li>The dealer reveals their whole hand. The dealer must hit until their hand totals 17 or higher. </li>
+        <li>If a player's total exceeds 21, they "bust" and lose their bet. </li>
+        <li>If a player's total is 21 or less and higher than the dealer's total, the player wins.</li>
+        <li>If the dealer busts, all remaining players win.</li>
+        <li>If the player and dealer have the same total, it's a "push" and the player's bet is returned.</li>
+        <li>If a player is dealt an Ace and a 10-value card (10, Jack, Queen, King) as their initial two cards, they have a "natural blackjack" and usually win 1.5 times their bet.</li>
+        
+
+        
+    </ul>
+    <div class="start-button">
+        <form method ="get" action="/start">
+            <button class="styled" type="submit">Start Playing</button>
+        </form>
+    </div> 
+    <%-include ("partials/footer.ejs") %> 
+
