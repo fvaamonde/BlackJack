@@ -12,7 +12,7 @@ This project is currently in development and can be improved. One feature that i
 
 ## Usage
 
-To get started with the game, from terminal node index.js
+To get started with the game, from terminal type: npm i, then node index.js
 
 ## Betting
 
